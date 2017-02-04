@@ -2,6 +2,7 @@
 Direct download of the .asl file: [here](TitanSoulsAutoSplitter.asl) -> click on "raw" and save that.
 - The timer auto-starts when the ingame-timer starts to run (only on a new file)
 - There is no auto-reset at the moment
+- If you let livespit compare to game time, you can see a "more accurate" ingame time (the real ingame time + the ingame time between the last save and exiting a game) or the exact ingame time with quitless runs (like DEMO - No save+quit (IGT))
 
 #### Differences between old (v1.1) and new (v2.0) split behavior
 v1.1 splits at:

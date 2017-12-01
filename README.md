@@ -9,11 +9,11 @@ v1.1 splits at:
 - the moment when a titan is killed (pulling the arrow out of the titan)
 - if doing risky skips, it can happen that the autosplitter triggers the split only after re-entering the game (in v1.0 it is possible that the autosplitter doesn't split at all)
 
-v2.0 splits at (only at the fist of the given possibilities):
+v2.0 splits at (only at the first of the given possibilities):
 - leaving a titan's area after killing it
 - re-entering the game after killing a titan (as soon as you select the file) (including risky skips (**needs to be tested**))
 - after dying on a titan after killing it (e.g. Onyxia death warp)
-- the moment when a titan is killed; you have to check the setting "Split Titan X at Kill?" and "Split at Ttan X?" must be checked (should not be used with risky skips, same problem like in v1.1)
+- the moment when a titan is killed; you have to check the setting "Split Titan X at Kill?" and "Split at Titan X?" must be checked (should not be used with risky skips, same problem like in v1.1)
 - ignores a titan completely if you uncheck "Split at Titan X?" (on default every "Split at Titan X?" is checked)
 
 v2.0 will be activated when the setting "Split after exiting the boss area?" is checked.  
@@ -21,7 +21,7 @@ v2.0 will not be activated by default when you add it in the layout editor or ac
 
 ##### Example: 100% - Normal with given route (no risky skips)
 
-   |v1.1 behavior|v2.0 behavior on default settings <br/>(Every "Should split at Titan X?" is activated)
+-|v1.1 behavior|v2.0 behavior on default settings <br/>(Every "Should split at Titan X?" is activated)
 -----------------|------------|-------------
 (1) Sludgeheart | on kill | leaving it's area
 (2) Eyecube | on kill | leaving it's area

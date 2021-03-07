@@ -46,7 +46,6 @@ init
         }
         catch (Exception ex)
         {
-            print("Exception catched!");
             return "";
         }
     };
@@ -138,9 +137,6 @@ update
         {
             bool killHappened = current.killCounter > vars.killCounter;
             vars.killCounter = current.killCounter;
-
-            print("\tsaveWriteHappened");
-            print("\tkillHappened: " + killHappened);
 
             if(settings["splitSaves_WaitOnKillSplit"])
             {

@@ -11,9 +11,12 @@ startup
 
     for(int i = 1; i <= 19; i++)
     {
-        settings.Add("splitV2_splitTitan" + i, true, "Split at Titan " + i + "?", "splitV2");
-        settings.Add("splitV2_splitTitan" + i + "_atKill",  false, "Split Titan " + i + " at Kill?", "splitV2_splitTitan" + i);
+        settings.Add("splitV2_splitTitan" + i, true, "Split at titan " + i + "?", "splitV2");
+        settings.Add("splitV2_splitTitan" + i + "_atKill",  false, "Split titan " + i + " at Kill?", "splitV2_splitTitan" + i);
     }
+
+    settings.Add("splitSaves", false, "Split on every save");
+    settings.Add("splitSaves_WaitOnKillSplit", false, "Wait on splits that end with \"Kill\"", "splitSaves");
 }
 
 init
@@ -35,6 +38,19 @@ init
         return timer.CurrentSplitIndex == (timer.Run.Count - 1);
     };
     vars.isLastSplit = isLastSplit;
+
+    Func<string> getCurrentSplitName = () => {
+        try 
+        {
+            return timer.CurrentSplit.Name;
+        }
+        catch (Exception ex)
+        {
+            print("Exception catched!");
+            return "";
+        }
+    };
+    vars.getCurrentSplitName = getCurrentSplitName;
     
     Func<bool> shouldSplitAtTitan = () =>
     {
@@ -111,6 +127,37 @@ update
             )
             {
                 vars.titanKilled = false;
+                vars.shouldSplit = true;
+            }
+        }
+    }
+    else if(settings["splitSaves"])
+    {
+        bool saveWriteHappened = vars.checkNewWriteToSave();
+        if(saveWriteHappened)
+        {
+            bool killHappened = current.killCounter > vars.killCounter;
+            vars.killCounter = current.killCounter;
+
+            print("\tsaveWriteHappened");
+            print("\tkillHappened: " + killHappened);
+
+            if(settings["splitSaves_WaitOnKillSplit"])
+            {
+                if(vars.getCurrentSplitName().EndsWith("Kill"))
+                {
+                    if(killHappened)
+                    {
+                        vars.shouldSplit = true;
+                    }
+                }
+                else
+                {
+                    vars.shouldSplit = true;
+                }
+            }
+            else
+            {
                 vars.shouldSplit = true;
             }
         }
